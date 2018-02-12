@@ -1,0 +1,50 @@
+Case #1: 0 0 0 0 0 
+Case #2: IMPOSSIBLE
+Case #3: 1 0 0 1 0 
+Case #4: 0 1 0 
+Case #5: IMPOSSIBLE
+Case #6: IMPOSSIBLE
+Case #7: 1 2 1 0 1 1 1 0 3 2 
+Case #8: IMPOSSIBLE
+Case #9: 6 0 4 
+Case #10: IMPOSSIBLE
+Case #11: 3 2 0 2 
+Case #12: 5 0 
+Case #13: 1 2 2 3 0 2 
+Case #14: 4 5 5 0 
+Case #15: 2 3 2 0 
+Case #16: 2 2 0 
+Case #17: 2 0 2 2 2 2 
+Case #18: 2 0 2 1 2 2 2 2 
+Case #19: 7 0 
+Case #20: 0 4 4 
+Case #21: 5 0 
+Case #22: 0 4 
+Case #23: 0 2 
+Case #24: IMPOSSIBLE
+Case #25: 0 1 2 1 1 2 2 1 
+Case #26: 2 2 0 
+Case #27: IMPOSSIBLE
+Case #28: 0 7 
+Case #29: IMPOSSIBLE
+Case #30: 2 2 2 0 2 
+Case #31: 2 1 1 0 2 3 1 2 
+Case #32: 0 1 1 2 1 2 1 
+Case #33: IMPOSSIBLE
+Case #34: 5 0 
+Case #35: 0 2 2 2 2 3 
+Case #36: 2 2 2 2 0 1 2 
+Case #37: IMPOSSIBLE
+Case #38: 1 2 2 2 0 1 2 
+Case #39: 1 2 2 2 2 0 2 3 
+Case #40: IMPOSSIBLE
+Case #41: 3 3 2 3 0 3 3 
+Case #42: 3 3 2 1 0 
+Case #43: 3 3 2 0 2 2 
+Case #44: IMPOSSIBLE
+Case #45: 5 0 
+Case #46: 0 3 3 2 2 3 
+Case #47: IMPOSSIBLE
+Case #48: IMPOSSIBLE
+Case #49: 1 0 1 0 2 1 1 1 
+Case #50: 6 0 

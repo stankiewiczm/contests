@@ -1,0 +1,100 @@
+Case #1: L T T T 
+Case #2: - T - 
+Case #3: - - T - L - - - 
+Case #4: - - - - - - - - - - 
+Case #5: - - - - - - - - - - 
+Case #6: - - - - - - L - - - 
+Case #7: L T T L T T L T T L 
+Case #8: T T T T L L L L L L 
+Case #9: - - - - - - - - - - 
+Case #10: T L L L T L L L T T 
+Case #11: - T - - 
+Case #12: - T - 
+Case #13: - - - - - - - - - - 
+Case #14: T L T T T L L L T L 
+Case #15: L L L T T T 
+Case #16: T - T 
+Case #17: - - - - - - - - - - 
+Case #18: T T L T L T L - T - 
+Case #19: L T T T 
+Case #20: L - - 
+Case #21: - - - T - - - - - - 
+Case #22: - - - - T - - - - - 
+Case #23: - L - - L 
+Case #24: L T L 
+Case #25: T - - - - L - - - - 
+Case #26: - - - - - - - - - - 
+Case #27: - - - - - - 
+Case #28: - - - 
+Case #29: L L L L T L L L T T 
+Case #30: L - L T L T T L L T 
+Case #31: - - - T - 
+Case #32: - - - 
+Case #33: - - - T - - - - - - 
+Case #34: L L L T L L T - L L 
+Case #35: T T T - L 
+Case #36: - - - 
+Case #37: - L - L - - - - - - 
+Case #38: - - - - - - T - - T 
+Case #39: T T T L 
+Case #40: T - - 
+Case #41: - - - - - - L - - L 
+Case #42: - - - - - - - - - - 
+Case #43: - L L T T L 
+Case #44: L L L 
+Case #45: L T T T T T T L - L 
+Case #46: - - - - - - - - - - 
+Case #47: - - - - - - 
+Case #48: - - T 
+Case #49: T T T L L T T T L L 
+Case #50: - - - - L - L L - - 
+Case #51: - - - - - 
+Case #52: - - - 
+Case #53: T T L - T T L L L L 
+Case #54: T T L L L T L T T T 
+Case #55: - - L - T 
+Case #56: - - T 
+Case #57: - - - - - - - - - - 
+Case #58: T L L L T L L T T T 
+Case #59: T L T T 
+Case #60: T T T 
+Case #61: - - - L - - - - - - 
+Case #62: - - - - - - - - - - 
+Case #63: - - L L - 
+Case #64: L - T 
+Case #65: T L L T T L L - T T 
+Case #66: - L - - - T - T T L 
+Case #67: - - - - 
+Case #68: - T T 
+Case #69: - - - - - - - - - - 
+Case #70: L T T L L T T T T L 
+Case #71: - - T - - - 
+Case #72: - - - 
+Case #73: L - - - - - - - - - 
+Case #74: T L T L T L T L L T 
+Case #75: - - - - 
+Case #76: - T - 
+Case #77: - - - - - - - T - - 
+Case #78: - - T - - - - T - - 
+Case #79: L T L - L L 
+Case #80: L - - 
+Case #81: - - - - - - - - - - 
+Case #82: T - - - - - - - - - 
+Case #83: L - T - - - 
+Case #84: L L T 
+Case #85: T - L T L - T - L T 
+Case #86: - T - T T - L - - - 
+Case #87: - L - - 
+Case #88: L - T 
+Case #89: T T L T - T T T T T 
+Case #90: T L L T T T L T L T 
+Case #91: L L - - - 
+Case #92: - - L 
+Case #93: L - L L L L L T T T 
+Case #94: - T L - - - - L L - 
+Case #95: - - L T 
+Case #96: - - T 
+Case #97: T - - - - - - - - T 
+Case #98: - - - T - L - - T T 
+Case #99: L T L T 
+Case #100: L - - 
