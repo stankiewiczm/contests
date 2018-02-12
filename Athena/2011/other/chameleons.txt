@@ -1,0 +1,81 @@
+
+
+ On an island chameleons of different color live.
+
+ Every Monday , the following events occur 
+
+ The number of Black chameleons born is 1000 more than sum of { existing Blue , existing Green and twice the existing White chameleons }
+
+ The number of Brown chameleons becomes 13 more than twice the existing Brown 
+
+ The number of Red chameleons triples
+
+ All the Yellow chameleons change their color to Black 
+
+ Every Tuesday , the following events occur 
+
+ The number of Yellow chameleons born is 1000 more than sum of { existing Black , existing Red and twice the existing Brown chameleons }
+
+ The number of Blue chameleons becomes 13 more than twice the existing Blue 
+
+ The number of White chameleons triples
+
+ All the Green chameleons change their color to Yellow 
+
+
+ Every Wednesday , the following events occur 
+
+ The number of Green chameleons born is 1000 more than sum of { existing Yellow , existing White and twice the existing Blue chameleons }
+
+ The number of Black chameleons becomes 13 more than twice the existing Black 
+
+ The number of Brown chameleons triples
+
+ All the Red chameleons change their color to Green 
+
+
+ Every Thursday , the following events occur 
+
+ The number of Red chameleons born is 1000 more than sum of { existing Green , existing Brown and twice the existing Black chameleons }
+
+ The number of Yellow chameleons becomes 13 more than twice the existing Yellow 
+
+ The number of Blue chameleons triples
+
+ All the White chameleons change their color to Red 
+
+
+ Every Friday , the following events occur 
+
+ The number of White chameleons born is 1000 more than sum of { existing Red , existing Blue and twice the existing Yellow chameleons }
+
+ The number of Green chameleons becomes 13 more than twice the existing Green 
+
+ The number of Black chameleons triples
+
+ All the Brown chameleons change their color to White 
+
+
+ Every Saturday , the following events occur 
+
+ The number of Brown chameleons born is 1000 more than sum of { existing White , existing Black and twice the existing Green chameleons }
+
+ The number of Red chameleons becomes 13 more than twice the existing Red 
+
+ The number of Yellow chameleons triples
+
+ All the Blue chameleons change their color to Brown 
+
+
+ Every Sunday , the following events occur 
+
+ The number of Blue chameleons born is 1000 more than sum of { existing Brown , existing Yellow and twice the existing Red chameleons }
+
+ The number of White chameleons becomes 13 more than twice the existing White 
+
+ The number of Green chameleons triples
+
+ All the Black chameleons change their color to Blue 
+
+
+On the same island there lives a monster . Whenever he sees 10^7 chameleons of the same color he eats them all immediately . How many chameleons change their color on the 3rd day after the 10^17th week . Initially there are no chameleons on the island . The first day is a Monday .
