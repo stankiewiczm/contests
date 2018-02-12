@@ -1,0 +1,200 @@
+\prob{31}
+In England the currency is made up of pound, \pounds, and pence, $p$, and there are eight coins in general circulation:
+$$    1p,\; 2p,\; 5p, \;10p,\; 20p,\; 50p,\; \hbox{\pounds}1 (100p)\;\hbox{and}\;\hbox{\pounds2} (200p).$$
+It is possible to make \pounds2 in the following way:
+$$    1\times\hbox{\pounds1} + 1\times50p + 2\times20p + 1\times5p + 1\times2p + 3\times1p$$
+How many different ways can \pounds2 be made using any number of coins?
+
+\sol{31}
+Again, we use DP.  Make a $201\times8$ array.  The first row will store the number of ways of making 
+each amount from $0p$ to \pounds2 using only $1p$ coins.  The next will use two types of coins, etc.
+The last (eighth) row will store the number of ways of making each amount using 8 types of coins,
+and the last entry will be the answer to the problem.
+
+\ans{73682}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{32}
+We shall say that an n-digit number is pandigital if it makes use of all the digits 1 to n exactly once; for example, the 5-digit number, 15234, is 1 through 5 pandigital.
+
+The product 7254 is unusual, as the identity, $39 \times 186 = 7254$, containing multiplicand, multiplier, and product is 1 through 9 pandigital.
+
+Find the sum of all products whose multiplicand/multiplier/product identity can be written as a 1 through 9 pandigital.
+
+\footnotesize
+HINT: Some products can be obtained in more than one way so be sure to only include it once in your sum.
+\normalsize
+
+\sol{32}
+If $a\times b = p$, notice that $p$ has to have 4 digits (if it had 3, then $a$ and $b$ would have to have 3 each, and the digits of $a$ and $b$ are at least as much as the digits of $c$).  So we can take $1 \leq a \leq 100$, and $\tfrac{1000}{a} \leq b \leq \tfrac{10000}a$.  After that it's just a case of checking all the products, being careful not to count
+a product more than once. 
+
+\ans{45228}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{33}
+The fraction $\frac{49}{98}$ is a curious fraction, as an inexperienced mathematician in attempting to simplify it may incorrectly believe that $\tfrac{49}{98} = \tfrac 48$, which is correct, is obtained by cancelling the 9s.
+
+We shall consider fractions like, $\tfrac{30}{50} = \tfrac 35$, to be trivial examples.
+
+There are exactly four non-trivial examples of this type of fraction, less than one in value, and containing two digits in the numerator and denominator.
+
+If the product of these four fractions is given in its lowest common terms, find the value of the denominator.
+
+\sol{33} 
+The fractions we have to consider are of the form $\tfrac{10a+b}{10c+d}$, with $1 \leq a,b,c,d \leq 9$.  Notice
+ that if $a=b$, the one of $c$ or $d$ has to equal $a$ as well, and the other can be shown to be equal as well.
+ So can work with $a \neq b$.  This leaves four possible
+cases (which we will loop through) to work with: 
+\begin{itemize}
+\item[$a=c$:] Then $\tfrac{10a+b}{10a+d} = \tfrac bd\;\;\Rightarrow \;\; b=d$, but $\tfrac bd = 1$.  No solutions.
+\item[$a=d$:] Then $\tfrac{10a+b}{10c+a} = \tfrac bc\;\;\Rightarrow \;\; 10ac=9bc+ab$, and also $b < c$ and $a < c$.
+\item[$b=c$:] Then $\tfrac{10a+b}{10b+d} = \tfrac ad\;\; \Rightarrow\;\; 10ab=9ad+bd$, and also $a < d$ and $a < b$.
+\item[$b=d$:] Then $\tfrac{10a+b}{10c+b} = \tfrac ac\;\; \Rightarrow \;\;b=0$, the trivial cases.  No solutions. 
+\end{itemize}
+The second case can be rewritten as $ab = ac + 9c(a-b)$.  As $b<c$, we must have $a-b=-k < 0$, for $k\in\mathbb{N}$.
+But then $9kc = a(c-b)$, but $a < c$ and $c-b < 9$.  So we have a contradiction, and no solutions.
+
+Coding up the third case gives 4 solutions:  $\tfrac{16}{64}, \tfrac{19}{95}, \tfrac{26}{65}, \tfrac{49}{98}$.
+The product of those is $\tfrac 1{100}$.
+
+
+\ans{100}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{34}
+
+145 is a curious number, as 1! + 4! + 5! = 1 + 24 + 120 = 145.
+
+Find the sum of all numbers which are equal to the sum of the factorial of their digits.
+
+\footnotesize
+Note: as 1! = 1 and 2! = 2 are not sums they are not included.
+\normalsize
+
+\sol{34}
+Nothing inspirational here.  Make a look up table for the factorials from zero to nine,
+run through integers up to about $10^5$ or $10^6$, checking the sum of the factorials
+of the digits against the number.  Only 145 and 40585 work.
+
+\ans{40730}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{35}
+The number, 197, is called a circular prime because all rotations of the digits: 197, 971, and 719, are themselves prime.
+
+There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, and 97.
+
+How many circular primes are there below one million?
+
+\sol{35}
+Well, generate the primes up to a million, and create a binary array of primeness.  Then for each prime in the list,
+move it cyclically (keeping track of the number of digits), like \verb"p0 = (p0/10) + (p0%10)*10**(Dig-1);", and check for primeness.  If all the rotations are prime, then it's good.
+
+\ans{55}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{36}
+
+The decimal number, $585 = 1001001001_2$ (binary), is palindromic in both bases.
+
+Find the sum of all numbers, less than one million, which are palindromic in base 10 and base 2.
+
+\footnotesize
+(Please note that the palindromic number, in either base, may not include leading zeros.)
+\normalsize
+
+\sol{36}
+Checking numbers for being palindromes is a little tricky, due to keeping track of the number of digits.
+Doing it for an array is easy (just compare indices counting from both ends).  So we \verb"str" the integers in question,
+and check if they're palindromes.  If so, the create a binary string of the integer and check that.  It turns out that
+the easiest way to make a binary string is in reverse, as the questions asks about palindromes, that does not even matter.
+
+\ans{872187}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{37}
+The number 3797 has an interesting property. Being prime itself, it is possible to continuously remove digits from left to right, and remain prime at each stage: 3797, 797, 97, and 7. Similarly we can work from right to left: 3797, 379, 37, and 3.
+
+Find the sum of the only eleven primes that are both truncatable from left to right and right to left.
+
+\footnotesize
+NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
+\normalsize
+
+\sol{37} Well, this is not very difficult.  Generate a long list of primes (till a million), and create a binary array
+to quickly check for primeness.  Then take each prime, and see if it passes the test, by truncating it first one way and then the other (using commands akin to \verb"p/10**k" and \verb"p%10**k").
+
+\ans{748317}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{38}
+Take the number 192 and multiply it by each of 1, 2, and 3:
+\begin{eqnarray*}
+    192 \times 1 &= &192 \\
+    192 \times 2 &= &384 \\
+    192 \times 3 &= &576
+\end{eqnarray*}
+By concatenating each product we get the 1 to 9 pandigital, 192384576. We will call 192384576 the concatenated product of 192 and (1,2,3)
+
+The same can be achieved by starting with 9 and multiplying by 1, 2, 3, 4, and 5, giving the pandigital, 918273645, which is the concatenated product of 9 and (1,2,3,4,5).
+
+What is the largest 1 to 9 pandigital 9-digit number that can be formed as the concatenated product of an integer with $(1,2, ... , n)$ where $n > 1$?
+
+\sol{38}
+Notice that the integer will form the first part of the pandigital product, so to be bigger than 918273645, it needs to begin with a 9.  Now if it has $k$ digits, the next few multiples of it will have $k+1$ digits.  So if we $n$ numbers, the concatenated product will have $n(k+1)-1 = 9$ digits.  Hence $n(k+1) = 10 = 2\cdot5$.  As $k \neq 1$, we must have $k = 4$ and $n = 2$.  Hence $9000 < k < 10000$, and need to check the digits of $k$ and $2k$ to see what works.  There are three solutions, and we take the largest one $(k,n) = (9327,2)$.
+
+\ans{932718654}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{39}
+If $p$ is the perimeter of a right angle triangle with integral length sides, $\{a,b,c\}$, there are exactly three solutions for $p = 120$.
+$$ \{20,48,52\}, \quad \{24,45,51\}, \quad \{30,40,50\}$$
+For which value of $p \leq 1000$, is the number of solutions maximised?
+
+\sol{39}
+Taking $a < b < c$, we have $a < 333$, and $b < 500 - \tfrac a2$.  Loop through all the possible values of $a$
+and $b$, check if it gives a right-angled triangle $\sqrt{a^2+b^2} \in \mathbb{N}$, and calculate the perimeter
+$p$ of each one.  Then just increment that value on the counting array, and read off the maximum.
+
+\ans{840}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{40}
+An irrational decimal fraction is created by concatenating the positive integers:
+$$0.12345678910\textbf{1}112131415161718192021...$$
+It can be seen that the $12^{th}$ digit of the fractional part is 1.
+
+If $d_n$ represents the $n^{th}$ digit of the fractional part, find the value of the following expression.
+$$d_1 \times d_{10} \times d_{100} \times d_{1000} \times d_{10000} \times d_{100000} \times d_{1000000}$$
+
+\sol{40}
+There are better ways of doing it, but as the last digit we need to find the millionth one, it can just be done
+iteratively.  Keep track of the current number in the sequence, the number of digits used up, and the next upcoming
+power of 10.  In normal circumstances, we just update the number and digits, but if we cross a power of 10, there
+is a need to pull out the relevant digit.  As we'd need the $(10^k-d)$'th digit of a number, it's not hard to pull it out
+with either modulo arithmetic, or string manipulation.
+
+\ans{210}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

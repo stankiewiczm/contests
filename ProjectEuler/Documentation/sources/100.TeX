@@ -1,0 +1,250 @@
+\prob{91}
+
+The points $P (x_1, y_1)$ and $Q (x_2, y_2)$ are plotted at integer co-ordinates and are joined to the origin, $O(0,0$), to form $\triangle OPQ$.
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.30\textwidth]{./images/p_091_1.png}
+\end{figure}
+\end{center}
+\vspace{-1.3cm}
+
+There are exactly fourteen triangles containing a right angle that can be formed when each co-ordinate lies between 0 and 2 inclusive; that is, $0 \leq x_1, y_1, x_2, y_2 \leq 2$.
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.60\textwidth]{./images/p_091_2.png}
+\end{figure}
+\end{center}
+\vspace{-1.5cm}
+
+Given that $0 \leq x_1, y_1, x_2, y_2 \leq 50$, how many right triangles can be formed?
+
+\vspace{-0.5cm}
+\sol{91}
+Well, in a right angled triangle, the squares of the sides satisfy $a^2+b^2= a^2+b^2$, so the condition for checking a triangle for correctness can be done as \verb"(L1+L2+L3 == 2*max(L1,L2,L3))", where the $L$'s are the squares of the sides.  Which is again convenient, as given the lattice coordinates, it is far simpler to work with the squares of the sides rather than the sides themselves.
+
+The only other check to really do in a brute solution, is to ensure that no points coincide, and no double counting occurs.
+The condition that one point must lie on a line above the other will do trick, so something like $x_1y_2 > x_2y_1$.
+
+\ans{14234}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{92}
+A number chain is created by continuously adding the square of the digits in a number to form a new number until it has been seen before.
+
+For example,
+\begin{eqnarray*}
+&&44 \to 32 \to 13 \to 10 \to 1 \to 1 \\
+&&85 \to 89 \to 145 \to 42 \to 20 \to 4 \to 16 \to 37 \to 58 \to 89
+\end{eqnarray*}
+Therefore any chain that arrives at 1 or 89 will become stuck in an endless loop. What is most amazing is that EVERY starting number will eventually arrive at 1 or 89.
+
+How many starting numbers below ten million will arrive at 89?
+
+\sol{92}
+Well any number below 10 million will immediately be sent to a number less than $7\times 9^2 = 567$, so we need only iterate
+those numbers to find where they finish.  For everything else, we can tell where it will finish by just performing a single
+iteration, and checking in a look-up-table.  Slow, but fast enough.
+
+\ans{8581146}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{93}
+By using each of the digits from the set, $\{1, 2, 3, 4\}$, exactly once, and making use of the four arithmetic operations
+$(+, -, \times, /)$ and brackets/parentheses, it is possible to form different positive integer targets.
+
+For example,
+\begin{eqnarray*}
+8  &= &(4 \times (1 + 3)) / 2   \\
+14 &= &4 \times (3 + 1 / 2)     \\
+19 &= &4 \times (2 + 3) - 1     \\
+36 &= &3 \times 4 \times (2 + 1)
+\end{eqnarray*}
+Note that concatenations of the digits, like $12 + 34$, are not allowed.
+
+Using the set, $\{1, 2, 3, 4\}$, it is possible to obtain thirty-one different target numbers of which 36 is the maximum, and each of the numbers 1 to 28 can be obtained before encountering the first non-expressible number.
+
+Find the set of four distinct digits, $a < b < c < d$, for which the longest set of consecutive positive integers, 1 to $n$, can be obtained, giving your answer as a string: $abcd$.
+
+\sol{93}
+Given two numbers, $a$ and $b$, we can make $a+b$, $a-b$, $b-a$, $a\times b$, and if they are non-zero, $a/b$ and $b/a$.
+Given three numbers, we can take a pair to make a list of possibilities, then act the third on every element on the list.
+There are three ways of choosing the pair, so the number of outputs grows quickly (though repeats start creeping in).  For four numbers, can treat one with the product of any other three, or make two pairs and interact the resultants.  Well, that last one  only applies to a product (quotient) of sums (differences) of the other elements, and I didn't bother implementing.
+Turns out that the winning set can generate all the numbers up to 51.  Pretty impressive.
+
+\footnotesize
+Note: need to work with floating points here, to avoid truncation of division.
+\normalsize
+
+\ans{1258}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{94}
+It is easily proved that no equilateral triangle exists with integral length sides and integral area. However, the \emph{almost equilateral triangle} 5-5-6 has an area of 12 square units.
+
+We shall define an \emph{almost equilateral triangle} to be a triangle for which two sides are equal and the third differs by no more than one unit.
+
+Find the sum of the perimeters of \emph{all almost equilateral triangles} with integral side lengths and area and whose perimeters do not exceed one billion (1,000,000,000).
+
+\sol{94}
+There are two types of such triangles, $(a,a,a+1)$ and $(a,a,a-1)$.  By applying Heron's formula it is easy to show
+that the triangles will have integer area if $(3a+1)(a-1)$ and $(3a-1)(a+1)$ are squares respectively.  It is easy to show
+that each bracket will have to be a square by itself, and a recursion relation begs to be found.
+
+I am too out of it to derive it now, but, by looking at small cases, a pattern can be found, and need not be proved here.
+The triangles that work are $5^+, 17^-, 65^+, 241^-, 901^+, 3361^-$.  The triangles alternate parity, with the recursion relation $T_n^- = 4T_{n-1}^+-T_{n-2}^-+2$, and $T_n^+ = 4T_{n-1}^--T_{n-2}^+-2$.  Can probably show this.  The code works though...
+
+\ans{518408346}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{95}
+
+The proper divisors of a number are all the divisors excluding the number itself. For example, the proper divisors of 28 are 1, 2, 4, 7, and 14. As the sum of these divisors is equal to 28, we call it a perfect number.
+
+Interestingly the sum of the proper divisors of 220 is 284 and the sum of the proper divisors of 284 is 220, forming a chain of two numbers. For this reason, 220 and 284 are called an amicable pair.
+
+Perhaps less well known are longer chains. For example, starting with 12496, we form a chain of five numbers:
+$$ 12496 \to 14288 \to 15472 \to 14536 \to 14264 (\to 12496 \to ...) $$
+Since this chain returns to its starting point, it is called an amicable chain.
+
+Find the smallest member of the longest amicable chain with no element exceeding one million.
+
+\sol{95}
+The main idea is to create an array that contains the sum of proper divisors of every number below a million.  There is a way to do that without division, which is faster in the long run.  So we run through all the numbers $n$, incrementing the table value  all proper multiples of $n$ by $n$ (so 28 will be incremented by 1, 2, 4, 7 and 14).  Then we just to run through all
+the starting numbers, to see if they make a chain.  To make it faster, since we're looking for the smallest member of a chain, we may just require that if any of the next numbers is greater we exit.  The program does a lot of computation, but still finishes within 30 seconds.
+
+\footnotesize
+Turns out there are exactly two chains of three or more numbers.  One was given, the other has length 28.
+\normalsize
+\ans{14316}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{96}
+\footnotesize
+Su Doku (Japanese meaning number place) is the name given to a popular puzzle concept. Its origin is unclear, but credit must be attributed to Leonhard Euler who invented a similar, and much more difficult, puzzle idea called Latin Squares. The objective of Su Doku puzzles, however, is to replace the blanks (or zeros) in a 9 by 9 grid in such that each row, column, and 3 by 3 box contains each of the digits 1 to 9. Below is an example of a typical starting puzzle grid and its solution grid.
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.60\textwidth]{./images/p_096.png}
+\end{figure}
+\end{center}
+\vspace{-1.3cm}
+A well constructed Su Doku puzzle has a unique solution and can be solved by logic, although it may be necessary to employ ``guess and test'' methods in order to eliminate options (there is much contested opinion over this). The complexity of the search determines the difficulty of the puzzle; the example above is considered easy because it can be solved by straight forward direct deduction.
+
+The 6k text file, \verb"sudoku.txt", contains fifty different Su Doku puzzles ranging in difficulty, but all with unique solutions (the first puzzle in the file is the example above).
+
+By solving all fifty puzzles find the sum of the 3-digit numbers found in the top left corner of each solution grid; for example, 483 is the 3-digit number found in the top left corner of the solution grid above.
+
+%\normalsize
+\vspace{-0.5cm}
+\sol{96}
+Wow this was less painful than one could have expected.  After avoiding this problem for years, it took me one lazy morning in Russia.  Read in each board, make a list of unassigned spots, and for each one list the possible entries.  If there is only one, then use it.  The next step is take each row, and look what numbers need to be filled in, and see where those numbers can be placed.  If there is a unique spot, use it.  I should probably also have done this for columns too, but forgot ;-).  So when you're stuck, it's time to guess and recurse.  Make a copy of the current board, look at the possibilities into the first available square, put them in one-by-one and call the solve function again, until an illegal board comes up or you have an answer.
+
+\footnotesize
+Note: You don't even need to look at gaps in the rows, but the recursion needs to be significantly deeper in that case.  Just takes a little extra time.
+
+\vspace{-0.5cm}
+\normalsize
+\ans{24702}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{97}
+The first known prime found to exceed one million digits was discovered in 1999, and is a Mersenne prime of the form $2^{6972593}-1$; it contains exactly 2,098,960 digits. Subsequently other Mersenne primes, of the form $2^p-1$, have been found which contain more digits.
+
+However, in 2004 there was found a massive non-Mersenne prime which contains 2,357,207 digits: $28433\times2^{7830457}+1$.
+
+Find the last ten digits of this prime number.
+
+\sol{97}
+Well, as we're interested in the last 10 digits, we can abuse the Python \verb"pow" function, and reduce the problem to a single line:\\
+\verb"print (28433*pow(2,7830457,10**10)+1)%10**10;"
+
+
+\ans{8739992577}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{98}
+By replacing each of the letters in the word CARE with 1, 2, 9, and 6 respectively, we form a square number: 1296 = 36$^2$. What is remarkable is that, by using the same digital substitutions, the anagram, RACE, also forms a square number: 9216 = 96$^2$. We shall call CARE (and RACE) a square anagram word pair and specify further that leading zeroes are not permitted, neither may a different letter have the same digital value as another letter.
+
+Using \verb"words.txt", a 16k text file containing nearly two-thousand common English words, find all the square anagram word pairs (a palindromic word is NOT considered to be an anagram of itself).
+
+What is the largest square number formed by any member of such a pair?
+
+\footnotesize
+NOTE: All anagrams formed must be contained in the given text file.
+\normalsize
+
+\sol{98}
+Nothing inspirational here -- more of a slog to be fair.  Read in the 2000 odd words, then compare them one by one to see if they are anagrams of each other (well, only need do this if they have the same length).  It will come out to 44 pairs of anagrams, so a very small number to crunch through.  So given two words of length $l$, consider all $l$-digit squares, and see
+if 1-to-1 assignment of the letters to numbers works.  This requires checking that no digit is assigned twice, and that repeated letters have the same digit.  Once the map is made, see what the anagram partner maps to.  If this too is a square, we record the higher result, and look for the maximal answer obtained.  It occurs for \verb"BROAD" and \verb"BOARD".
+
+\ans{18679}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{99}
+Comparing two numbers written in index form like $2^{11}$ and $3^7$ is not difficult, as any calculator would confirm that $2^{11} = 2048 < 3^{7} = 2187$.
+
+However, confirming that $632382^{518061} > 519432^{525806}$ would be much more difficult, as both numbers contain over three million digits.
+
+Using \verb"base_exp.txt", a 22k text file containing one thousand lines with a base/exponent pair on each line, determine which line number has the greatest numerical value.
+
+\footnotesize
+NOTE: The first two lines in the file represent the numbers in the example given above.
+\normalsize
+
+\sol{99}
+Well, this could (I suppose) be done by calculating each base exponent pair, but that would stretch the limits of even Python.
+But since $\log = a^b = b \log a$, and logs preserve monotonicity, we need only find the line with the highest $\log a^b$.  So that is what we do (can use log$_{10}$ to check the length -- turns out that all the numbers in the list have
+between 3005316 and 3005253 digits)
+
+\ans{709}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{100}
+If a box contains twenty-one coloured discs, composed of fifteen blue discs and six red discs, and two discs were taken at random, it can be seen that the probability of taking two blue discs, $P(BB) = (15/21)\times(14/20) = 1/2$.
+
+The next such arrangement, for which there is exactly 50\% chance of taking two blue discs at random, is a box containing eighty-five blue discs and thirty-five red discs.
+
+By finding the first arrangement to contain over $10^{12} = 1,000,000,000,000$ discs in total, determine the number of blue discs that the box would contain.
+
+\sol{100}
+Ok, so if we have $B$ blue disks and $R$ red disks, then $\tfrac{B(B-1)}{(B+R)(B+R-1)} = \tfrac 12$, so,
+$2B(B-1) = (B+R)(B+R-1)$.  Now suppose we have such a solution $(R_k,B_k)$.  Observe that if we now take
+$R_{k+1} = 2B_k+R_k-1$, and
+$B_{k+1} = B_k+2R_{k+1} = 5B_k+2R_k-2$, then:
+\begin{eqnarray*}
+&&(B_{k+1}+R_{k+1})(B_{k+1}+R_{k+1}-1) -2B_{k+1}(B_{k+1}-1)  \\
+&= &R_{k+1}(2B_{k+1}+R_{k+1}-1) - B_{k+1}(B_{k+1}-1)\\
+&= &(2B_k+R_k-1)(12B_k+5R_k-6) - (5B_k+2R_k-2)(5B_k+2R_k-3) \\
+&= &(24B_k^2 + 5R_k^2 + 6 + 22B_kR_k - 24 B_k - 11 R_k) \\
+&&\qquad\quad - (25B_k^2 + 4R_k^2 + 6 + 20B_kR_k  - 25B_k - 10R_k)  \\
+&= & -B_k^2 + 4R_k^2 + 8 B_kR_4 + B_k - 4 R_k \\
+&= & R_k(2B_k+R_k -1) - B_k(B_k-1) \\
+&= & (B_k+R_k)(B_k+R_k-1) - 2B_k(B_k-1) = 0,
+\end{eqnarray*}
+so we have another solution.  Now since the formula is reversible, we argue that $all$ solutions can be obtained by recursively applying the formula to the initial solution (3,1).  Then it is a simple question of recursing till the limit is reached.
+
+\ans{756872327473}
+

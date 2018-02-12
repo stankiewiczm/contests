@@ -1,0 +1,45 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{graphicx}
+\usepackage{amsmath, amsthm, amsfonts}
+\DeclareGraphicsRule{wmf}{bmp}{png}{}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+\addtolength{\voffset}{-1cm}%
+\addtolength{\textheight}{2cm}%
+\addtolength{\hoffset}{-1cm}%
+\addtolength{\textwidth}{2cm}%
+\setlength{\parindent}{0pt}%
+\setlength{\parskip}{1.5ex plus 0.5ex minus 0.2ex}%
+
+\def\prob#1{ \newpage \subsection*{Problem #1} }
+\def\sol#1 { \bigskip \subsection*{Solution:} }
+\def\ans#1 { \bigskip \subsection*{Answer: #1 } }
+
+\begin{document}
+
+\title{Solutions to the problems of Project Euler}
+\author{Maciej A. Stankiewicz}
+\date{September 2010}
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\pagenumbering{arabic}
+
+%\include{sources/10}
+%\include{sources/20}
+%\include{sources/30}
+%\include{sources/40}
+%\include{sources/50}
+%\include{sources/60}
+%\include{sources/70}
+%\include{sources/80}       % Still need #78
+%\include{sources/90}
+%\include{sources/100}
+\include{sources/110}
+\include{sources/120}
+\include{sources/130}
+
+
+\end{document}

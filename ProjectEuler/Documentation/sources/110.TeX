@@ -1,0 +1,190 @@
+\prob{101}
+
+\sol{101}
+
+\ans{---}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{102}
+Three distinct points are plotted at random on a Cartesian plane, for which $-1000 \leq x, y \leq 1000$, such that a triangle is formed.
+
+Consider the following two triangles:
+\begin{eqnarray*}
+A(-340,495), & B(-153,-910), & C(835,-947) \\
+X(-175,41),  & Y(-421,-714), & Z(574,-645)
+\end{eqnarray*}
+It can be verified that triangle $ABC$ contains the origin, whereas triangle $XYZ$ does not.
+
+Using \verb"triangles.txt", a 27k text file containing the co-ordinates of one thousand ``random'' triangles, find the number of triangles for which the interior contains the origin.
+
+\footnotesize
+NOTE: The first two examples in the file represent the triangles in the example given above.
+\normalsize
+
+\sol{102}
+Given a triangle $ABC$ and the origin $O$, consider the section of the `area' corresponding to the quantity $|ABO|+|BCO|+|CAO|$.  If the point $O$ lies inside the triangle, then this quantity will be equal to the area $|ABC|$, whereas if it is outside, this quantity will be appropriately larger.  Applying this test for each triangle will tell us whether it contains the origin or not.
+
+To find the areas, I used Heron's formula:
+$$K = \sqrt{s(s-a)(s-b)(s-c)} = \frac{\sqrt{(a+b+c)(a+b-c)(b+c-a)(c+a-b)}}{4}.$$
+
+\ans{228}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{103}
+
+\sol{103}
+
+\ans{---}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{104}
+The Fibonacci sequence is defined by the recurrence relation:
+$$ F_{n} = F_{n-1} + F_{n-2}, \quad \hbox{ where }F_1 = 1 \hbox{ and  } F_2 = 1.$$
+It turns out that $F_{541}$, which contains 113 digits, is the first Fibonacci number for which the last nine digits are 1-9 pandigital (contain all the digits 1 to 9, but not necessarily in order). And $F_{2749}$, which contains 575 digits, is the first Fibonacci number for which the first nine digits are 1-9 pandigital.
+
+Given that $F_{k}$ is the first Fibonacci number for which the first nine digits AND the last nine digits are 1-9 pandigital, find k.
+
+\sol{104}
+This can be solved with an `intelligent' brute force solution.  We can generate a list of Fibonacci numbers, keeping only the last 9 digits with ease, checking if the end digits are 1-9 pandigital.  Once we find one, we need to check the first 9 digits as well, and for this we use a trick.  It is well known that $F_n = (\varphi^n + \varphi^{-n})\sqrt{5}$.  Now the second term is always less than 1, so when looking at the first nine digits, we can neglect it.  Observe that $\log_{10}F_n = n\log_{10} \varphi - \log_{10}\sqrt{5}$, so by reducing $\log_{10} F_n$ by an integer quantity until it lies between 8 and 9, we get a number with the same leading digits, but less than $10^9$.  Exponentiating it, and dropping the fractional part, we have the first 9 digits to check for pandigitality.
+
+\ans{329468}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{105}
+
+\sol{105}
+
+\ans{---}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{106}
+
+Let $S(A)$ represent the sum of elements in set $A$ of size $n$. We shall call it a special sum set if for any two non-empty disjoint subsets, $B$ and $C$, the following properties are true:
+\begin{enumerate}
+\item $S(B) \neq S(C)$; that is, sums of subsets cannot be equal.
+\item If $B$ contains more elements than $C$ then $S(B) > S(C)$.
+\end{enumerate}
+For this problem we shall assume that a given set contains $n$ strictly increasing elements and it already satisfies the second rule.
+
+Surprisingly, out of the 25 possible subset pairs that can be obtained from a set for which $n = 4$, only 1 of these pairs need to be tested for equality (first rule). Similarly, when $n = 7$, only 70 out of the 966 subset pairs need to be tested.
+
+For $n = 12$, how many of the 261625 subset pairs that can be obtained need to be tested for equality?
+
+\footnotesize
+NOTE: This problem is related to problems 103 and 105.
+
+\normalsize
+\sol{106}
+Ok, step one will be to generate all the 12 element subsets, and classify them by length (as the second condition need not be checked).  Then we'll need to run the sets of the same length against each other to see if they need be compared.  If they have a common element, we can reduce it to a smaller case (without that element), so we don't check it.  And, if the elements of one sequence can be matched up to be all bigger than the elements of the second sequence, we again don't need to compare.  As the sequences are given as ordered, we just need to check the indices, keeping track of two boolean variables -- one for sequence one being bigger, one the other way round.  If they are both true, we need to count this one (eg $a_1+a_4$ vs $a_2+a_3$).
+
+\ans{21384}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{107}
+
+\sol{107}
+
+\ans{---}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{108}
+In the following equation $x$, $y$, and $n$ are positive integers.
+$$ \frac 1x + \frac 1y = \frac 1n$$
+For $n = 4$ there are exactly three distinct solutions:
+$$\frac 15 + \frac1{20} = \frac 16 + \frac{1}{12} = \frac 18 + \frac 18 = \frac 14$$
+What is the least value of $n$ for which the number of distinct solutions exceeds one-thousand?
+
+\footnotesize
+NOTE: This problem is an easier version of problem 110; it is strongly advised that you solve this one first.
+\normalsize
+
+\sol{108}
+Well, observe that $y = \tfrac {nx}{x-n}$, and the question can be brute forced from here.  But I'd rather do it properly,
+so check out the solution to 110.
+
+\ans{180180}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{109}
+\footnotesize
+In the game of darts a player throws three darts at a target board which is split into twenty equal sized sections numbered one to twenty.
+\vspace{-0.4cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.40\textwidth]{./images/p_109.png}
+\end{figure}
+\end{center}
+\vspace{-1.25cm}
+The score of a dart is determined by the number of the region that the dart lands in. A dart landing outside the red/green outer ring scores zero. The black and cream regions inside this ring represent single scores. However, the red/green outer ring and middle ring score double and treble scores respectively.
+
+At the centre of the board are two concentric circles called the bull region, or bulls-eye. The outer bull is worth 25 points and the inner bull is a double, worth 50 points.
+
+There are many variations of rules but in the most popular game the players will begin with a score 301 or 501 and the first player to reduce their running total to zero is a winner. However, it is normal to play a ``doubles out'' system, which means that the player must land a double (including the double bulls-eye at the centre of the board) on their final dart to win; any other dart that would reduce their running total to one or lower means the score for that set of three darts is ``bust''.
+
+When a player is able to finish on their current score it is called a ``checkout'' and the highest checkout is 170: T20 T20 D25 (two treble 20s and double bull).  
+
+There are exactly eleven distinct ways to checkout on a score of 6:\\
+D3; D1 D2; S2 D2; D2 D1; S4 D1; S1 	S1 	D2; S1 	T1 	D1; S1 	S3 	D1; D1 	D1 	D1; D1 	S2 	D1; S2 	S2 	D1
+
+Note that D1 D2 is considered different to D2 D1 as they finish on different doubles. However, the combination S1 T1 D1 is considered the same as T1 S1 D1.
+
+In addition we shall not include misses in considering combinations; for example, D3 is the same as 0 D3 and 0 0 D3.
+
+Incredibly there are 42336 distinct ways of checking out in total.
+
+How many distinct ways can a player checkout with a score less than 100?
+
+\vspace{-0.75cm}
+\sol{109}
+Ok, this is a bit like baby's first dynamic programming.  Can even just do it in a triple loop over the possible scores for each dart and see if it comes out below 100.
+
+\vspace{-0.75cm}
+\ans{38182}
+\normalsize
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{110}
+In the following equation $x$, $y$, and $n$ are positive integers.
+$$\frac 1x + \frac 1y = \frac 1n$$
+It can be verified that when $n = 1260$ there are 113 distinct solutions and this is the least value of $n$ for which the total number of distinct solutions exceeds one hundred.
+
+What is the least value of $n$ for which the number of distinct solutions exceeds four million?
+
+\footnotesize
+NOTE: This problem is a much more difficult version of problem 108 and as it is well beyond the limitations of a brute force approach it requires a clever implementation.
+
+\normalsize
+
+\sol{110}
+
+If $\tfrac 1x + \tfrac 1y = \tfrac 1n$, then rearranging gives $y = \tfrac{nx}{x-n}$.  The inspirational bit is to notice
+that $y = \tfrac{nz}{x-n} = n + \tfrac{n^2}{x-n}$, so $(x-n)$ must be a factor of $n^2$.  Due to the symmetric nature of $(x,y)$, for a given $n$ there will be $\lceil d(n^2) \rceil = \tfrac 12 (d(n^2)+1)$.
+
+Now if $n = \prod p_i^{\alpha_i}$, then $n^2 = \prod p_i^{2\alpha_i}$ and $d(n^2) = \prod(2\alpha_i+1)$.  So we need to find a set of exponents $\{\alpha_i\}$, which when arranged in decreasing order to the first primes will give the lowest total.  Next observe that $3^{15} > 8\times10^{10}$, so the product of the first 15 primes will have over 4 million solutions, so we need not go higher than that.
+
+Also observe that in a problem such as this, repeating a small prime will not be that beneficial, as we're considering a product of $(2\alpha+1)$'s, so a new prime will give a factor of 3, so eliminating a prime will require increasing an $\alpha$ to 4 (or spreading it out somehow), and after the first couple primes it will become very costly.
+
+So we `guess' that only the first 5 prime will involve repeats.  Run a loop over the first $\alpha_i$'s (keeping them decreasing), evaluating the product so far, and the number of solutions to the equation.  From that, we can calculate how many other primes need to be included (once each), and include them in the product.  Compare to best solution so far.  And that is it.
+
+
+\ans{9350130049860600}
+

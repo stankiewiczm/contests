@@ -1,0 +1,215 @@
+\prob{21}
+Let $d(n)$ be defined as the sum of proper divisors of $n$ (numbers less than $n$ which divide evenly into $n$).
+If $d(a) = b$ and $d(b) = a$, where $a \neq b$, then $a$ and $b$ are an amicable pair and each of a and b are called amicable numbers.
+
+For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore $d(220) = 284$. The proper divisors of 284 are 1, 2, 4, 71 and 142; so $d(284) = 220$.
+
+Evaluate the sum of all the amicable numbers under 10000.
+
+\sol{21}
+Since we need to find the divisors of a large set of numbers, we do it in reverse.  Make an array
+of a large size (say 30000).  Then take each integer $k$, and increment all the array multiples of $k$
+by $k$.  This way each integer will be incremented by each of it's divisors, so the array will contain
+the sum $d(n)$ for each $n$.  Then we just check for $d(d(n)) = n$, removing the perfect numbers, and find
+the sum.
+
+\ans{31626}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{22}
+Using \verb"names.txt" (right click and 'Save Link/Target As...'), a 46K text file containing over five-thousand first names, begin by sorting it into alphabetical order. Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score.
+
+For example, when the list is sorted into alphabetical order, COLIN, which is worth 3 + 15 + 12 + 9 + 14 = 53, is the 938th name in the list. So, COLIN would obtain a score of $938 \times 53 = 49714$.
+
+What is the total of all the name scores in the file?
+
+\sol{22}
+Nothing special here.  Just read in the file -- names are surrounded by `` '', so keep track of that.  For each name, calculate its value, and a sorting-flag: $V(S) = \sum S[k]/30^k$, where each letter is converted to a number in range [1,26].  Then can 
+combine the sorting flat and name value, sort the lot, decompose the data and calculate.  Uninspired and messy :(
+
+\ans{871198282}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{23}
+A perfect number is a number for which the sum of its proper divisors is exactly equal to the number. For example, the sum of the proper divisors of 28 would be 1 + 2 + 4 + 7 + 14 = 28, which means that 28 is a perfect number.
+
+A number $n$ is called deficient if the sum of its proper divisors is less than $n$ and it is called abundant if this sum exceeds $n$.
+
+As 12 is the smallest abundant number, 1 + 2 + 3 + 4 + 6 = 16, the smallest number that can be written as the sum of two abundant numbers is 24. By mathematical analysis, it can be shown that all integers greater than 28123 can be written as the sum of two abundant numbers. However, this upper limit cannot be reduced any further by analysis even though it is known that the greatest number that cannot be expressed as the sum of two abundant numbers is less than this limit.
+
+Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
+
+\sol{23}
+As in problem 1, we generate the number of divisors of all numbers up to 28200.  Then look for those numbers that are abundant
+and put them into a list.  Going through the list, tick off all the numbers that can be achieved (preferably in a binary array), and then read off those that can't be achieved.  Finding the sum is easy.
+
+\ans{4179871}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{24}
+A permutation is an ordered arrangement of objects. For example, 3124 is one possible permutation of the digits 1, 2, 3 and 4. If all of the permutations are listed numerically or alphabetically, we call it lexicographic order. The lexicographic permutations of 0, 1 and 2 are:
+$$012 \quad  021 \quad    102   \quad  120   \quad  201   \quad  210$$
+What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
+
+\sol{24} Keep a list of available digits (start with all of them).  Now there are 10! ways
+of arranging the digits, so 9! of the start with each possible digit.  So we look at $\lceil N/9! \rceil$ -- it corresponds
+to the number of lowest digit to take (here it's 3, so we take the third lowest available digit).  Then we repeat it with 8!, 7! etc.
+
+
+\ans{2783915460}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{25}
+The Fibonacci sequence is defined by the recurrence relation:
+$$ F_n = F_{n-1} + F_{n-2}, \qquad \hbox{where } F_1 = 1\hbox{ and }F_2 = 1.$$
+Hence the first 12 terms will be:
+\begin{eqnarray*}
+    F_1 &= &1 \\
+    F_2 &= &1 \\
+    F_3 &= &2 \\
+    F_4 &= &3 \\
+    F_5 &= &5 \\
+    F_6 &= &8 \\
+    F_7 &= &13 \\
+    F_8 &= &21 \\
+    F_9 &= &34 \\
+    F_{10} &= &55 \\
+    F_{11} &= &89 \\
+    F_{12} &= &144
+\end{eqnarray*}
+The 12th term, $F_{12}$, is the first term to contain three digits.
+
+What is the first term in the Fibonacci sequence to contain 1000 digits?
+
+\sol{25} Well, this seems like a definite abuse of \verb"Python" long integers, but it's easy to just
+generate the terms until one is greater than $10^{999}$.
+
+\ans{4782}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\prob{26}
+A unit fraction contains 1 in the numerator. The decimal representation of the unit fractions with denominators 2 to 10 are given:
+\begin{eqnarray*}
+1/2 &= &0.5 \\
+1/3 &= &0.(3) \\
+1/4 &= &0.25 \\
+1/5 &= &0.2 \\
+1/6 &= &0.1(6) \\
+1/7 &= &0.(142857) \\
+1/8 &= &0.125 \\
+1/9 &= &0.(1) \\
+1/10 &= &0.1 \\
+\end{eqnarray*}
+Where 0.1(6) means 0.166666..., and has a 1-digit recurring cycle. It can be seen that $1/7$ has a 6-digit recurring cycle.
+
+Find the value of $d < 1000$ for which $1/d$ contains the longest recurring cycle in its decimal fraction part.
+
+\sol{26}
+As 2 and 5 have terminating decimals, factors of 2 or 5 will not effect the length of the recurring cycle.
+So we consider only the numbers $d$ relatively prime to 10.  Euler's theorem tells us that:
+$$10^{\phi(d)} \equiv_{d} 1 \qquad \Rightarrow \qquad d|\left(10^{\phi(d)}-1\right),$$
+so the recurring cycle will be a factor of $\phi(d)$.  Now $\phi(d) < d$, and for primes, $\phi(d)=d-1$, and that will be the primary search area.  For a number $d$, we look at the first power of 10 which gives a remainder of 1 mod $d$.
+Starting at the top, we find that 983 has a cycle of 982, and need to search no further.
+
+
+\ans{983}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{27}
+Euler published the remarkable quadratic formula:
+$$n^2 + n + 41$$
+It turns out that the formula will produce 40 primes for the consecutive values n = 0 to 39. However, when n = 40, $40^2 + 40 + 41 = 40(40 + 1) + 41$ is divisible by 41, and certainly when $n = 41$, $41^2 + 41 + 41$ is clearly divisible by 41.
+
+Using computers, the incredible formula  $n^2 - 79n + 1601$ was discovered, which produces 80 primes for the consecutive values n = 0 to 79. The product of the coefficients, $-79$ and 1601, is $-126479$.
+
+Considering quadratics of the form:
+$$  n^2 + an + b, \qquad \hbox{ where }|a| < 1000 \hbox{ and }|b| < 1000.$$
+Find the product of the coefficients, $a$ and $b$, for the quadratic expression that produces the maximum number of primes for consecutive values of $n$, starting with $n = 0$.
+
+\sol{27}
+Notice that for $n=0$, the expression is just $b$, which is to be prime.  Also $b$ must be positive, and less than 1000.
+So, as in problem 7, we generate a list of primes, with a boolean array as well.  We loop through the values of $b$, and
+all the possible values of $a$, keeping track of the number of primes we find before the formula fails.  Also important is 
+to check whether the number is positive or not, before plugging into the boolean array.  The pair is $(-61, 971)$.
+
+\ans{--59231}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{28}
+Starting with the number 1 and moving to the right in a clockwise direction a 5 by 5 spiral is formed as follows:
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.3\textwidth]{./images/p_028.png}
+\end{figure}
+\end{center}
+\vspace{-1cm}
+It can be verified that the sum of the numbers on the diagonals is 101.
+
+What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
+
+\sol{28}
+The central number is 1.  To get the next layer, we keep adding 2 to the last number.  Doing it 4 times finishes the second layer.  The next layer involves adding 4's, then 6's etc.  A $1001\times1001$ spiral will have 500 layers around the central 1.
+The rest is easy.
+
+\ans{669171001}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{29}
+Consider all integer combinations of $a^b$ for $2 \leq a leq 5$ and $2 \leq b \leq 5$:
+\begin{eqnarray*}
+    2^2=4, \qquad &2^3=8, \qquad  2^4=16, \qquad &2^5=32      \\
+    3^2=9, \qquad &3^3=27, \qquad 3^4=81, \qquad &3^5=243     \\
+    4^2=16,\qquad &4^3=64, \qquad 4^4=256,\qquad &4^5=1024    \\
+    5^2=25,\qquad &5^3=125,\qquad 5^4=625,\qquad &5^5=3125
+\end{eqnarray*}
+If they are then placed in numerical order, with any repeats removed, we get the following sequence of 15 distinct terms:
+$$4, 8, 9, 16, 25, 27, 32, 64, 81, 125, 243, 256, 625, 1024, 3125$$
+How many distinct terms are in the sequence generated by $a^b$ for $2 \leq a \leq 100$ and $2 \leq b \leq 100$?
+
+\sol{29}
+Again, it's easiest to abuse the \verb"Python" long integer functions.  Just work out each power (9801 of them),
+put into a list, sort, and count non-identical terms (so check adjacency).
+
+\ans{9183}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{30}
+
+Surprisingly there are only three numbers that can be written as the sum of fourth powers of their digits:
+\begin{eqnarray*}
+    1634 &= &1^4 + 6^4 + 3^4 + 4^4 \\
+    8208 &= &8^4 + 2^4 + 0^4 + 8^4 \\
+    9474 &= &9^4 + 4^4 + 7^4 + 4^4
+\end{eqnarray*}
+As $1 = 1^4$ is not a sum it is not included.
+
+The sum of these numbers is 1634 + 8208 + 9474 = 19316.
+
+Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
+
+\sol{30}
+Notice that for a seven digit number, the sum of the fifth powers of the digits is less than
+$7\times 9^5 = 413343 < 10^6$, so the highest we have to look are 6-digit numbers (less than 354294).
+As the same calculations will be done many times, make an array of the fifth power of each digit,
+and for each number use it as a look-up table to find the sum of the fifth powers (there are 6 of them,
+largest being 194979)
+
+\ans{443839}

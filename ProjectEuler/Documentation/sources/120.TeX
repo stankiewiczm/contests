@@ -1,0 +1,222 @@
+\prob{111}
+
+\sol{111}
+
+\ans{---}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{112}
+Working from left-to-right if no digit is exceeded by the digit to its left it is called an increasing number; for example, 134468.
+
+Similarly if no digit is exceeded by the digit to its right it is called a decreasing number; for example, 66420.
+
+We shall call a positive integer that is neither increasing nor decreasing a ``bouncy'' number; for example, 155349.
+
+Clearly there cannot be any bouncy numbers below one-hundred, but just over half of the numbers below one-thousand (525) are bouncy. In fact, the least number for which the proportion of bouncy numbers first reaches 50% is 538.
+
+Surprisingly, bouncy numbers become more and more common and by the time we reach 21780 the proportion of bouncy numbers is equal to 90\%.
+
+Find the least number for which the proportion of bouncy numbers is exactly 99\%.
+
+\sol{112}
+Given that there are 2178 non-bouncy numbers up to 21780, to get this down to 1\% we'll need to go to a couple of million.  As we expect to find more non-bouncy numbers, a fair guess for the answer would be 10 to 20 million.  This is sufficiently small as to be brute forced.  Just run through all the numbers from 101 upwards, counting the bouncy ones, waiting for it to reach 99\% of the total.
+
+\ans{1587000}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{113}
+Working from left-to-right if no digit is exceeded by the digit to its left it is called an increasing number; for example, 134468.
+
+Similarly if no digit is exceeded by the digit to its right it is called a decreasing number; for example, 66420.
+
+We shall call a positive integer that is neither increasing nor decreasing a ``bouncy'' number; for example, 155349.
+
+As $n$ increases, the proportion of bouncy numbers below $n$ increases such that there are only 12951 numbers below one-million that are not bouncy and only 277032 non-bouncy numbers below $10^{10}$.
+
+How many numbers below a googol ($10^{100}$) are not bouncy?
+
+\sol{113}
+Let us count the number of increasing numbers, up to $k$-digits long.  It can be written with leading zeros as a set of zeros, ones, twos, etc. up to nines.  Each combination will give a unique number.  This can be calculated as taking $k+9$ places and setting up the digit partitions, giving $\binom{k+9}{9}$ numbers.  However, of these $9k$ are constant, and 1 is identically zero.
+
+Similarly, we can work with decreasing numbers.  However, to include leading zeros we now have zeros, nines, eights, down to ones and zeros.  So this time we insert 10 partitions among $k+10$ places, giving $\binom{k+10}{10}$ numbers.  Of these, $10k$ will be constant, and 1 is identically zero.
+
+So total number of non-bouncy numbers will be (including constant ones):
+$$\mathcal{N} = \binom{109}{9} - 901 + \binom{110}{10} - 1001 + 900 = \binom{109}{9} + \binom{110}{10} - 1002.$$
+
+\ans{51161058134250}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{114}
+A row measuring seven units in length has red blocks with a minimum length of three units placed on it, such that any two red blocks (which are allowed to be different lengths) are separated by at least one black square. There are exactly seventeen ways of doing this.
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.80\textwidth]{./images/p_114.png}
+\end{figure}
+\end{center}
+\vspace{-1.25cm}
+How many ways can a row measuring fifty units in length be filled?
+
+\footnotesize
+NOTE: Although the example above does not lend itself to the possibility, in general it is permitted to mix block sizes. For example, on a row measuring eight units in length you could use red (3), black (1), and red (4).
+
+\normalsize
+
+\sol{114}
+This is a fairly straight forward exercise in DP (well, it's fairly linear), with one trick.  Since the red blocks cannot touch, convert the red blocks into a `red block+black square', and solve for a board of length 51.
+
+So we evaluate the number of combinations up to length $n$.  Then for a length $n+1$, we can add a black square (so same as combinations of length $n$), or add a block of length 4, 5, etc.  Very fast code.
+
+\ans{16475640049}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{115}
+\footnotesize
+NOTE: This is a more difficult version of problem 114.
+
+\normalsize
+A row measuring n units in length has red blocks with a minimum length of m units placed on it, such that any two red blocks (which are allowed to be different lengths) are separated by at least one black square.
+
+Let the fill-count function, $F(m, n)$, represent the number of ways that a row can be filled.
+
+For example, $F(3, 29) = 673135$ and $F(3, 30) = 1089155$.
+
+That is, for $m = 3$, it can be seen that $n = 30$ is the smallest value for which the fill-count function first exceeds one million.
+
+In the same way, for $m = 10$, it can be verified that $F(10, 56) = 880711$ and $F(10, 57) = 1148904$, so $n = 57$ is the least value for which the fill-count function first exceeds one million.
+
+For $m = 50$, find the least value of n for which the fill-count function first exceeds one million.
+
+\sol{115}
+Meh, this question might have been tricky, had it not been for \#114.  Just repackage the code from problem 114 into a function to evaluate $F(m,n)$, set $m = 50$, start with $ n > m$, and work upwards until $F(m,n) > 10^6$.
+
+\ans{168}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{116}
+A row of five black square tiles is to have a number of its tiles replaced with coloured oblong tiles chosen from red (length two), green (length three), or blue (length four).
+
+If red tiles are chosen there are exactly seven ways this can be done.
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.80\textwidth]{./images/p_116_1.png}
+\end{figure}
+\end{center}
+\vspace{-1.25cm}
+If green tiles are chosen there are three ways.
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.80\textwidth]{./images/p_116_2.png}
+\end{figure}
+\end{center}
+\vspace{-1.25cm}
+And if blue tiles are chosen there are two ways.
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.80\textwidth]{./images/p_116_3.png}
+\end{figure}
+\end{center}
+\vspace{-1.25cm}
+Assuming that colours cannot be mixed there are $7 + 3 + 2 = 12$ ways of replacing the black tiles in a row measuring five units in length.
+
+How many different ways can the black tiles in a row measuring fifty units in length be replaced if colours cannot be mixed and at least one coloured tile must be used?
+
+\footnotesize
+NOTE: This is related to problem 117.
+\normalsize
+
+\sol{116}
+Meh, this seems like a three times a simpler version of problem 114.  There is no limit on the length of the coloured blocks and they need not be separated by a black block, so $N(l) = N(l)+N(l-c)$, where $c$ is the length of coloured block.  So just run for $c$ equal to 2, 3 and 4, and sum the result (remembering to remove 1 from each calculation for the all-black solution).
+
+\ans{20492570929}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{117}
+Using a combination of black square tiles and oblong tiles chosen from: red tiles measuring two units, green tiles measuring three units, and blue tiles measuring four units, it is possible to tile a row measuring five units in length in exactly fifteen different ways.
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.80\textwidth]{./images/p_117.png}
+\end{figure}
+\end{center}
+\vspace{-1.25cm}
+How many ways can a row measuring fifty units in length be tiled?
+
+\footnotesize
+NOTE: This is related to problem 116.
+\normalsize
+
+\sol{117}
+Ok seriously, this \textbf{is} just a simpler version of problem 114.  Simple linear DP.
+
+\ans{100808458960497}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{118}
+
+\sol{118}
+
+\ans{---}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{119}
+The number 512 is interesting because it is equal to the sum of its digits raised to some power: $5 + 1 + 2 = 8$, and
+$8^3 = 512$. Another example of a number with this property is $614656 = 28^4$.
+
+We shall define $a_n$ to be the $n^\text{th}$ term of this sequence and insist that a number must contain at least two digits to have a sum.
+
+You are given that $a_2 = 512$ and $a_{10} = 614656$.
+
+Find $a_{30}$.
+
+\sol{119}
+Well, if we set a guess-limit that the number will have at most 20 digits long, then $10^{20} > N = a^b$, the sum of digits of $N$ will be at most 180, so we have a limit on $a$.  So we loop over $a$ from 2 to 180, evaluating all the exponents, checking of the digit sum corresponds to $a$.  The answer comes out to be $63^8$.
+
+\footnotesize
+This problem is easily scalable to higher indices.  For instance $a_{100} = 256^{22}$, has 53 digits.
+\normalsize
+
+\ans{248155780267521}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{120}
+Let $r$ be the remainder when $(a-1)^n + (a+1)^n$ is divided by $a^2$.
+
+For example, if $a = 7$ and $n = 3$, then $r = 42$: $6^3 + 8^3 = 728 \equiv 42$ mod 49. And as $n$ varies, so too will $r$, but for $a = 7$ it turns out that $r_\text{max} = 42$.
+
+For $3 \leq a \leq 1000$, find $\sum  r_\text{max}$.
+
+\sol{120}
+Notice that if $n$ is even, $(a-1)^n + (a+1)^n \equiv_{a^2} (\tfrac{a^2}2 - na + 1)+(\tfrac{a^2}2 + na + 1) \equiv_{a^2} 2$,
+whereas if $n$ is odd, it reduces to $2na$.  
+
+So for odd $a$, we can take $n = (a-1)/2$ to obtain $r = a(a-1)$, which is the largest multiple of $a$ less than $a^2$, so it is unquestionably the maximum.  For even $a$ we can take $n = (a-2)/2$, to obtain $r = a(a-2)$, which is less obviously the maximum, but a brute force check shows that this too is the value of $r_\text{max}$.
+
+\ans{333082500}
+

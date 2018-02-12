@@ -1,0 +1,260 @@
+\prob{81}
+In the 5 by 5 matrix below, the minimal path sum from the top left to the bottom right, by \textbf{only moving to the right and down}, is indicated in bold red and is equal to 2427.
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.33\textwidth]{./images/p_081.png}
+\end{figure}
+\end{center}
+\vspace{-1.25cm}
+Find the minimal path sum, in \verb"matrix.txt", a 31k text file containing a 80 by 80 matrix, from the top left to the bottom right by only moving right and down.
+
+\sol{81}
+This is a shortest-path problem, so I used Dijkstra's algorithm -- just a shorter version of \#83.
+
+\ans{427337}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{82}
+\footnotesize
+NOTE: This problem is a more challenging version of Problem 81.
+
+\normalsize
+The minimal path sum in the 5 by 5 matrix below, by starting in any cell in the left column and finishing in any cell in the right column, and only moving up, down, and right, is indicated in red and bold; the sum is equal to 994.
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.33\textwidth]{./images/p_082.png}
+\end{figure}
+\end{center}
+\vspace{-1.25cm}
+Find the minimal path sum, in \verb"matrix.txt", a 31k text file containing a 80 by 80 matrix, from the left column to the right column.
+
+\sol{82}
+This is a essentially a shortest-path problem, but with multiple start and end points.  I used Dijkstra's algorithm --  a small modification of problem \#83.
+
+\ans{260324}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{83}
+\footnotesize
+NOTE: This problem is a significantly more challenging version of Problem 81.
+
+\normalsize
+In the 5 by 5 matrix below, the minimal path sum from the top left to the bottom right, by moving left, right, up, and down, is indicated in bold red and is equal to 2297.
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.33\textwidth]{./images/p_083.png}
+\end{figure}
+\end{center}
+\vspace{-1.25cm}
+Find the minimal path sum, in \verb"matrix.txt", a 31k text file containing a 80 by 80 matrix, from the top left to the bottom right by moving left, right, up, and down.
+
+\sol{83}
+A shortest-path problem, I used Dijkstra's algorithm.  Read the data into a matrix $A$.  Make a second matrix $B$ of the same
+dimensions, with all entries being very large $(10^9)$, except $B(0,0) = A(0,0)$.  $B(k,l)$ will store the shortest path from the starting point to a given point $(k,l)$.  For this we use a todo list $T$.  Initially only the starting point is in $T$.  Then while there are points in $T$, we take the first one off, and see whether the paths out of it will lead to a shorter route to a neighbour than the previous best.  If yes, improve the minimum of this neighbour, and add him to the list (if not already there).  Runs very quickly.
+
+\ans{425185}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{84}
+\footnotesize
+In the game, Monopoly, the standard board is set up in the following way:
+
+
+A player starts on the GO square and adds the scores on two 6-sided dice to determine the number of squares they advance in a clockwise direction. Without any further rules we would expect to visit each square with equal probability: 2.5\%. However, landing on G2J (Go To Jail), CC (community chest), and CH (chance) changes this distribution.
+
+In addition to G2J, and one card from each of CC and CH, that orders the player to go directly to jail, if a player rolls three consecutive doubles, they do not advance the result of their 3rd roll. Instead they proceed directly to jail.
+
+At the beginning of the game, the CC and CH cards are shuffled. When a player lands on CC or CH they take a card from the top of the respective pile and, after following the instructions, it is returned to the bottom of the pile. There are sixteen cards in each pile, but for the purpose of this problem we are only concerned with cards that order a movement; any instruction not concerned with movement will be ignored and the player will remain on the CC/CH square.
+
+Community Chest (2/16): One is advance to go, one is go to JAIL
+
+Chance (10/16): Advance to go; go to JAIL; go to C1; go to E3; go to H2; go to R1; go to next R (twice);
+go to next U; go back three squares.
+
+%The heart of this problem concerns the likelihood of visiting a particular square. That is, the probability of finishing at that square after a roll. For this reason it should be clear that, with the exception of G2J for which the probability of finishing on it is zero, the CH squares will have the lowest probabilities, as 5/8 request a movement to another square, and it is the final square that the player finishes at on each roll that we are interested in.
+We shall make no distinction between ``Just Visiting'' and being sent to JAIL, and we shall also ignore the rule about requiring a double to ``get out of jail'', assuming that they pay to get out on their next turn.
+
+By starting at GO and numbering the squares sequentially from 00 to 39 we can concatenate these two-digit numbers to produce strings that correspond with sets of squares.
+
+Statistically it can be shown that the three most popular squares, in order, are JAIL (6.24\%) = Square 10, E3 (3.18\%) = Square 24, and GO (3.09\%) = Square 00. So these three most popular squares can be listed with the six-digit modal string: 102400.
+
+If, instead of using two 6-sided dice, two 4-sided dice are used, find the six-digit modal string.
+
+
+\normalsize
+
+\sol{84}
+Meh.  Nothing difficult here -- just set up a board, run for a million moves and see which squares have been visited most.  The only tricky part is implementing the community and chance cards properly, and the triple-double-to-jail.  Oddly enough, without the triple-jail rule, GO is more popular than E3...
+
+\ans{101524}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{85}
+By counting carefully it can be seen that a rectangular grid measuring 3 by 2 contains eighteen rectangles:
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.55\textwidth]{./images/p_085.png}
+\end{figure}
+\end{center}
+\vspace{-1.2cm}
+Although there exists no rectangular grid that contains exactly two million rectangles, find the area of the grid with the nearest solution.
+
+\sol{85}
+For an $a\times b$ rectangle, there are $\binom {a+1}2$ ways of choosing two columns, and $\binom {b+1}2$ ways of choosing
+two rows.  So $N = \tfrac 14 a(a+1)b(b+1)$.  Assuming that $a > b$, we get that $b \leq 53$.  So by running through the available values of $b$, we find the closest values of $a$, and compare it to the target.  The best is a $77\times 36$ grid,
+with just 2 rectangles less than two million.
+
+\ans{2772}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{86}
+A spider, $S$, sits in one corner of a cuboid room, measuring 6 by 5 by 3, and a fly, $F$, sits in the opposite corner. By traveling on the surfaces of the room the shortest ``straight line'' distance from $S$ to $F$ is 10 and the path is shown on the diagram.
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.36\textwidth]{./images/p_086.png}
+\end{figure}
+\end{center}
+\vspace{-1.2cm}
+However, there are up to three ``shortest'' path candidates for any given cuboid and the shortest route is not always integer.
+
+By considering all cuboid rooms with integer dimensions, up to a maximum size of $M$ by $M$ by $M$, there are exactly 2060 cuboids for which the shortest distance is integer when $M=100$, and this is the least value of M for which the number of solutions first exceeds two thousand; the number of solutions is 1975 when $M=99$.
+
+Find the least value of $M$ such that the number of solutions first exceeds one million.
+
+\sol{86}
+It is fairly obvious that if $a \geq b \geq c$, then the shortest distance is $\sqrt{a^2+(b+c)^2}$.  So need to find
+Pythagorean triangles.  A brute solution over $a$, $b$ and $c$ will take forever, but a brute solution over
+$a$ and $(b+c)$ will fit well in time.  Here $(b+c)$ can range from $2$ to $2a$, and if we find a solution, we can decompose this into multiple solutions for $(b,c)$.  The rest is details.
+
+\ans{1818}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{87}
+The smallest number expressible as the sum of a prime square, prime cube, and prime fourth power is 28. In fact, there are exactly four numbers below fifty that can be expressed in such a way:
+\begin{eqnarray*}
+28 &= &2^2 + 2^3 + 2^4 \\
+33 &= &3^2 + 2^3 + 2^4 \\
+49 &= &5^2 + 2^3 + 2^4 \\
+47 &= &2^2 + 3^3 + 2^4
+\end{eqnarray*}
+How many numbers below fifty million can be expressed as the sum of a prime square, prime cube, and prime fourth power?
+
+\sol{87}
+Well as we're dealing with the total sum below 50 million, which seams like a really large number, since we're dealing with powers of primes it actually comes down substantially.  There are only 908 primes who's square is below that limit,
+73 primes for the cube, and 23 primes for the fourth powers to worry about.  It is just a simple case of running through every possible combination to see if it works.  The only trick it to check for repeats (40000 numbers found are repeats), but that can be solved with a large boolean `Found' array.
+
+\ans{1097343}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{88}
+A natural number, $N$, that can be written as the sum and product of a given set of at least two natural numbers, $\{a_1, a_2, \dots, a_k\}$ is called a product-sum number: $N = a_1+a_2+\cdots+a_k = a_1a_2\cdots a_k$.
+For example, $6 = 1 + 2 + 3 = 1 \times 2 \times 3$.
+
+For a given set of size, $k$, we shall call the smallest $N$ with this property a minimal product-sum number. The minimal product-sum numbers for sets of size, $k = 2$, 3, 4, 5, and 6 are as follows.
+\begin{eqnarray*}
+k=2: && 4 = 2 \times 2 = 2 + 2                                                  \\
+k=3: && 6 = 1 \times 2 \times 3 = 1 + 2 + 3                                     \\
+k=4: && 8 = 1 \times 1 \times 2 \times 4 = 1 + 1 + 2 + 4                        \\
+k=5: && 8 = 1 \times 1 \times 2 \times 2 \times 2 = 1 + 1 + 2 + 2 + 2           \\
+k=6: && 12 = 1 \times 1 \times 1 \times 1 \times 2 \times 6 = 1 + 1 + 1 + 1 + 2 + 6
+\end{eqnarray*}
+Hence for $2\leq k\leq6$, the sum of all the minimal product-sum numbers is $4+6+8+12 = 30$; note that 8 is only counted once in the sum.
+
+In fact, as the complete set of minimal product-sum numbers for $2\leq k\leq 12$ is $\{4, 6, 8, 12, 15, 16\}$, the sum is 61.
+
+What is the sum of all the minimal product-sum numbers for $2\leq k\leq 12000$?
+
+\sol{88}
+First, we can observe that $k < M_k \leq 2k$, as the set $\{1,1,\dots, 2, k\}$ has sum and product $2k$.  So if we write $N = \prod a_i$, and $s = \sum a_i$, for $1 < a_1 \leq \cdots \leq a_k$, then we need to add $N-s$ ones, hence $N$ can be called a product-sum number of size $N-s+k$.
+
+Now since we are no interested in numbers above 24000, we can generate all sets $\{a_1, a_2, \dots, a_k\}$ of numbers who's products are below this limit.  Going in ordered ways of products of 2 numbers, 3 numbers, up to 14 numbers as $2^{15} > 240000$.  Then going through all the products, we can evaluate $N-s+k$, and see if $N$ is the minimal product-sum number for this $N-s+k$.  Then we run through all the minima and collect them without repeats.
+
+\ans{7587457}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{89}
+The rules for writing Roman numerals allow for many ways of writing each number. However, there is always a ``best'' way of writing a particular number.
+
+For example, the following represent all of the legitimate ways of writing the number sixteen:
+\begin{eqnarray*}
+&&\texttt{IIIIIIIIIIIIIIII}    \\
+&&\texttt{VIIIIIIIIIII    }    \\
+&&\texttt{VVIIIIII        }    \\
+&&\texttt{XIIIIII         }    \\
+&&\texttt{VVVI            }    \\
+&&\texttt{XVI             }
+\end{eqnarray*}
+The last example being considered the most efficient, as it uses the least number of numerals.
+
+The 11k text file, \verb"roman.txt", contains one thousand numbers written in valid, but not necessarily minimal, Roman numerals; that is, they are arranged in descending units and obey the subtractive pair rule (see FAQ for the definitive rules for this problem).  Find the number of characters saved by writing each of these in their minimal form.
+
+\footnotesize
+Note: You can assume that all the Roman numerals in the file contain no more than four consecutive identical units.
+\normalsize
+
+\sol{89}
+Since all the numbers given are in a legitimate format, we can start by reading each one in and decoding it's value.  Then, since the subtraction rules frown on subtracting a number from one more than 10 times bigger, we see that the best roman form would be to write out each digit correctly and string it all together.  For instance $1984 = 1000+900+80+4 = $\verb"M+DM+LXXX+IV"=\verb"MDMLXXXIV".  And the number of characters required to make a digit is independent of whether its in the hundreds, tens or units place.
+
+\ans{743}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prob{90}
+Each of the six faces on a cube has a different digit (0 to 9) written on it; the same is done to a second cube. By placing the two cubes side-by-side in different positions we can form a variety of 2-digit numbers.
+
+For example, the square number 64 could be formed:
+\vspace{-0.5cm}
+\begin{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width = 0.25\textwidth]{./images/p_090.png}
+\end{figure}
+\end{center}
+\vspace{-1.2cm}
+In fact, by carefully choosing the digits on both cubes it is possible to display all of the squares below one-hundred: 01, 04, 09, 16, 25, 36, 49, 64, and 81.
+
+For example, one way this can be achieved is by placing $\{0, 5, 6, 7, 8, 9\}$ on one cube and $\{1, 2, 3, 4, 8, 9\}$ on the other cube.
+
+For this problem we shall allow the 6 or 9 to be turned upside-down so that an arrangement like $\{0, 5, 6, 7, 8, 9\}$ and $\{1, 2, 3, 4, 6, 7\}$ allows for all nine square numbers to be displayed; otherwise it would be impossible to obtain 09.
+
+In determining a distinct arrangement we are interested in the digits on each cube, not the order.
+\begin{eqnarray*}
+\{1, 2, 3, 4, 5, 6\} \hbox{ is equivalent to } \{3, 6, 4, 1, 2, 5\} \\
+\{1, 2, 3, 4, 5, 6\} \hbox{ is distinct from } \{1, 2, 3, 4, 5, 9\}
+\end{eqnarray*}
+But because we are allowing 6 and 9 to be reversed, the two distinct sets in the last example both represent the extended set $\{1, 2, 3, 4, 5, 6, 9\}$ for the purpose of forming 2-digit numbers.
+
+How many distinct arrangements of the two cubes allow for all of the square numbers to be displayed?
+
+\sol{90}
+Well, there are $\binom {10}6 = 210$ ways of making a die.  So only about 20000 ordered combinations.  Simply run through them all, make a list of all possible numbers to make, and check is the squares are among them.
+
+\ans{1217}
+
