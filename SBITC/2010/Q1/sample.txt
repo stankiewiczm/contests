@@ -1,0 +1,8 @@
+6
+All your cash has gone
+Would you like to have a loan?
+"Punctuation; not special?"
+Wooooo, one more case to fiddle with!
+HowaboutareallyreallyreallyREALLYlongstringwithoutlettersinitHowaboutareallyreallyreallyREALLYlongstringwithoutlettersinitHowaboutareallyreallyreallyREALLYlongstringwithoutlettersinit?
+6
+
